@@ -16,6 +16,9 @@
 - Troca de óleo do veículo
 - Aluguel
 - Preço Gasolina
+- Consumo na Gasolina
 - Preço Etanol
+- Consumo no Etanol
 - Preço GNV
+- Consumo no GNV
 - Lucro Mensal Pretendido
