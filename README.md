@@ -16,31 +16,39 @@ km mês
 km anual    
 #### Valor Depreciação = depreciação anual/ km anual
 
+
 #### IPVA + licenciamento anual = valor/ km anual
 #### Preço do Seguro anual = valor/ km anual
+
 
 Custo dos Pneus
 Vida Útil Pneus (km)
 #### Valor gasto dos Pneus por km= custo dos pneus/ vida útil pneus
 
+
 Custo troca de óleo
 Frequência em km da troca.
 #### Valor gasto com óleo por km= custo da troca/ frequência em km da troca
 
+
 Custo com manutenção (anual)
 #### Gasto com manutenção por km= Custo com manutenção/ km anual
+
 
 Preço da gasolina
 Consumo da gasolina por km
 #### Custo da gasolina por km = preço da gasolina/ Consumo da gasolina por km
 
+
 Preço do etanol
 Consumo do etanol por km
 #### Custo do etanol por km = preço do etanol / Consumo do etanol por km
 
+
 Preço do GNV
 Consumo do GNV por km
 #### Custo do GNV por km = preço do GNV / Consumo do GNV por km
+
 
 Salário (mês)
 #### Renda por km= salario/ km mes
