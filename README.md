@@ -10,10 +10,10 @@
 ### - Custos:
 
 
-Valor do automóvel (FIP).
-Depreciação.
-km mês.
-km anual.
+Valor do automóvel (FIP)      
+Depreciação     
+km mês    
+km anual    
 #### Valor Depreciação = depreciação anual/ km anual
 
 #### IPVA + licenciamento anual = valor/ km anual
