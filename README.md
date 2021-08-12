@@ -7,7 +7,7 @@
 #### (Lista de Rascunho) Informações que iremos utilizar...
 
 
-#### - Custos:
+### - Custos:
 
 
 Valor do automóvel (FIP)
@@ -61,14 +61,14 @@ Salário (mês)
 #### Custo Total Mensal GNV = Custo Total km GNV * km mês
 
 
-#### - Projeção de Ganhos:
+### - Projeção de Ganhos:
 
 
 Ganho médio na corrida por km
 #### Ganhos Mensais totais = ganho médio na corrida por km * km mês
 
 
-#### - Lucro Final
+### - Lucro Final
 
 
 #### Lucro Gasolina= Ganhos Mensais totais - Custo Total Mensal Gasolina
