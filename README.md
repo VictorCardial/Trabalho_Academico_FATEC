@@ -10,9 +10,12 @@
 ### - Custos:
 
 
-Valor do automóvel (FIP)      
-Depreciação     
+Valor do automóvel (FIP)  
+
+Depreciação    
+
 km mês    
+
 km anual    
 #### Valor Depreciação = depreciação anual/ km anual
 
