@@ -31,6 +31,7 @@ create table uau_usuario_autorizacao (
 
 create table for_formulario (
   for_id bigint unsigned not null auto_increment,
+  for_usr_id bigint unsigned not null,
   for_modelo varchar(50) not null,
   for_valor_automovel decimal (6,2),
   for_depreciacao decimal (6,2),
@@ -74,5 +75,8 @@ create table for_formulario (
 
   for_lucro_final_gasolina decimal (6,2),
   for_lucro_final_etanol decimal (6,2),
-  for_lucro_final_gnv decimal (6,2)
+  for_lucro_final_gnv decimal (6,2),
+
+  primary key (for_id),
+  foreign key for_usr_fk (for_usr_id) references usr_usuario (usr_id) on delete restrict on update cascade
 );
