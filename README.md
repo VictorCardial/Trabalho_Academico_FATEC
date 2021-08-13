@@ -15,6 +15,7 @@ Para rodar utilize: mvn spring-boot:run
 
 ### - Custos:
 
+Modelo/Marca
 
 Valor do automóvel (FIP)  
 
@@ -31,11 +32,13 @@ km anual
 
 
 Custo dos Pneus
+
 Vida Útil Pneus (km)
 #### Valor gasto dos Pneus por km= custo dos pneus/ vida útil pneus
 
 
 Custo troca de óleo
+
 Frequência em km da troca.
 #### Valor gasto com óleo por km= custo da troca/ frequência em km da troca
 
@@ -45,16 +48,19 @@ Custo com manutenção (anual)
 
 
 Preço da gasolina
+
 Consumo da gasolina por km
 #### Custo da gasolina por km = preço da gasolina/ Consumo da gasolina por km
 
 
 Preço do etanol
+
 Consumo do etanol por km
 #### Custo do etanol por km = preço do etanol / Consumo do etanol por km
 
 
 Preço do GNV
+
 Consumo do GNV por km
 #### Custo do GNV por km = preço do GNV / Consumo do GNV por km
 
