@@ -1,0 +1,5 @@
+br/gov/sp/fatec/Calculo_do_Km/repository/AutorizacaoRepository.class
+br/gov/sp/fatec/Calculo_do_Km/entity/Usuario.class
+br/gov/sp/fatec/Calculo_do_Km/repository/UsuarioRepository.class
+br/gov/sp/fatec/Calculo_do_Km/CalculoDoKmApplication.class
+br/gov/sp/fatec/Calculo_do_Km/entity/Autorizacao.class
