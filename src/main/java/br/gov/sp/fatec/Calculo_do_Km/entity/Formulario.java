@@ -13,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import java.math.BigDecimal;
+import javax.validation.constraints.Digits;
+
 @Entity
 @Table(name = "for_formulario")
 public class Formulario {
@@ -25,9 +28,9 @@ private Long id;
 @Column(name = "for_modelo")
 private String modelo;
 
-// @Digits(integer=5, fraction=2)
-// @Column(name = "for_valor_automovel")
-// private BigDecimal  valor_automovel;
+ @Column(name = "for_valor_automovel")
+ @Digits(integer = 6, fraction = 2)
+ private BigDecimal  valor_automovel;
 
 public Long getId() {
     return this.id;
@@ -43,6 +46,14 @@ public String getModelo() {
 
 public void setModelo(String modelo) {
     this.modelo = modelo;
+}
+
+public BigDecimal getValorAutomovel() {
+    return this.valor_automovel;
+}
+
+public void setValorAutomovel(BigDecimal valor_automovel) {
+    this.valor_automovel = valor_automovel;
 }
 
 }
