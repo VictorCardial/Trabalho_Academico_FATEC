@@ -9,7 +9,6 @@ import br.gov.sp.fatec.Calculo_do_Km.entity.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
-    /*
     public List<Usuario> findByNomeContainsIgnoreCase(String nome);
 
     public Usuario findByNome(String nome);
@@ -26,6 +25,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
     @Query("select u from Usuario u inner join u.autorizacoes a where a.nome = ?1")
     public List<Usuario> buscaPorNomeAutorizacao(String autorizacao);
-    */
     
 }
