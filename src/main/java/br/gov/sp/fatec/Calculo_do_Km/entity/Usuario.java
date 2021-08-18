@@ -1,5 +1,6 @@
 package br.gov.sp.fatec.Calculo_do_Km.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -34,6 +36,9 @@ public class Usuario {
         inverseJoinColumns = { @JoinColumn(name = "aut_id") }
         )
     private Set<Autorizacao> autorizacoes;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private List<Formulario> formularios;
 
     public Long getId() {
         return this.id;
@@ -67,4 +72,11 @@ public class Usuario {
         this.autorizacoes = autorizacoes;
     }
 
+    public List<Formulario>  getFormularios() {
+        return this.formularios;
+    }
+
+    public void setFormularios (List<Formulario> formularios) {
+        this.formularios = formularios;
+    }
 }

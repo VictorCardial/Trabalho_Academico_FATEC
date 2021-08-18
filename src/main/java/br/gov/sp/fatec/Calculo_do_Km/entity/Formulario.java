@@ -1,7 +1,5 @@
 package br.gov.sp.fatec.Calculo_do_Km.entity;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,8 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import java.math.BigDecimal;
@@ -187,6 +184,10 @@ private BigDecimal lucro_final_etanol;
 @Column(name = "for_lucro_final_gnv")
 @Digits(integer = 6, fraction = 2)
 private BigDecimal lucro_final_gnv;
+
+@ManyToOne(fetch = FetchType.EAGER)
+@JoinColumn(name = "for_usr_id")
+private Usuario usuario;
 
 public Long getId() {
     return this.id;
@@ -524,6 +525,14 @@ public BigDecimal getLucro_final_gnv() {
 
 public void setLucro_final_gnv(BigDecimal lucro_final_gnv) {
     this.lucro_final_gnv = lucro_final_gnv;
+}
+
+public Usuario getUsuario() {
+    return usuario;
+}
+
+public void setUsuario(Usuario usuario) {
+    this.usuario = usuario;
 }
 
 }
