@@ -80,3 +80,18 @@ create table for_formulario (
   primary key (for_id),
   foreign key for_usr_fk (for_usr_id) references usr_usuario (usr_id) on delete restrict on update cascade
 );
+
+insert into usr_usuario (usr_nome, usr_senha)
+    values ('admin', 'admin'),
+           ('victor', '123'),
+           ('hercules', '123');
+
+insert into aut_autorizacao (aut_nome)
+    values ('ROLE_ADMIN'),
+           ('ROLE_USUARIO');
+
+insert into uau_usuario_autorizacao values (1, 1), (2, 2), (3, 2);
+
+insert into for_formulario 
+    values (2, 'Corolla', 120000),
+           (3, 'fusca', 5000);
