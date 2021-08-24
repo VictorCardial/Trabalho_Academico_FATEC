@@ -15,6 +15,8 @@ import javax.persistence.Table;
 @Table(name = "aut_autorizacao")
 public class Autorizacao {
 
+    /*Atributos da tabela Autorizacao*/
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "aut_id")
@@ -23,8 +25,13 @@ public class Autorizacao {
     @Column(name = "aut_nome")
     private String nome;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "autorizacoes")
-    private Set<Usuario> usuarios;
+
+    /**Habilito se eu quiser retornar uma lista de Usuarios por Autorizações*/
+
+    /*@ManyToMany(fetch = FetchType.LAZY, mappedBy = "autorizacoes")
+    private Set<Usuario> usuarios;*/
+
+    /**Getters e Setters dos atributos */
 
     public Long getId() {
         return this.id;
@@ -42,12 +49,14 @@ public class Autorizacao {
         this.nome = nome;
     }
 
-    public Set<Usuario> getUsuarios() {
+    /**Habilito se eu quiser Getter e Setter para retornar uma Lista de Usuarios por Autorizacoes */
+
+    /*public Set<Usuario> getUsuarios() {
         return this.usuarios;
     }
 
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
-    }
+    }*/
 
 }

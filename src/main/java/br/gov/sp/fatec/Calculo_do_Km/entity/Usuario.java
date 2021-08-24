@@ -19,6 +19,8 @@ import javax.persistence.Table;
 @Table(name = "usr_usuario")
 public class Usuario {
 
+    /**Atributos da Tabela Usuario */
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usr_id")
@@ -30,15 +32,21 @@ public class Usuario {
     @Column(name = "usr_senha")
     private String senha;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    /**Relacionamento N:N de Usuario com Autorizacao */
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "uau_usuario_autorizacao",
         joinColumns = { @JoinColumn(name = "usr_id")},
         inverseJoinColumns = { @JoinColumn(name = "aut_id") }
         )
     private Set<Autorizacao> autorizacoes;
 
+    /**Relacionamento 1:N de Usuario com Formulario */
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
     private List<Formulario> formularios;
+
+    /**Getters e Setters dos atributos */
 
     public Long getId() {
         return this.id;

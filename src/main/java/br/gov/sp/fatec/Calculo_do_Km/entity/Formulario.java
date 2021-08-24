@@ -17,6 +17,8 @@ import javax.validation.constraints.Digits;
 @Table(name = "for_formulario")
 public class Formulario {
 
+/**Atributos da tabela Formulario */
+
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name = "for_id")
@@ -185,9 +187,13 @@ private BigDecimal lucro_final_etanol;
 @Digits(integer = 6, fraction = 2)
 private BigDecimal lucro_final_gnv;
 
+/**Relacionamento N:1 de Formulario com Usuario */
+
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "for_usr_id")
 private Usuario usuario;
+
+/**Getters e Setters dos atributos */
 
 public Long getId() {
     return this.id;
