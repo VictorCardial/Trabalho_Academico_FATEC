@@ -46,6 +46,7 @@ public class Usuario {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
     private List<Formulario> formularios;
 
+    /**Marca */
     /**Getters e Setters dos atributos */
 
     public Long getId() {
