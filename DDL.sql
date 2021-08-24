@@ -92,6 +92,6 @@ insert into aut_autorizacao (aut_nome)
 
 insert into uau_usuario_autorizacao values (1, 1), (2, 2), (3, 2);
 
-insert into for_formulario 
+insert into for_formulario (for_usr_id, for_modelo, for_modelo) 
     values (2, 'Corolla', 120000),
            (3, 'fusca', 5000);
