@@ -11,10 +11,10 @@ import br.gov.sp.fatec.Calculo_do_Km.entity.Formulario;
 public interface FormularioRepository extends JpaRepository<Formulario, Long> {
 
     @Query("select f from Formulario f where f.modelo =?1")
-    public Formulario buscaFormularioPorId(Long id);
+    public Formulario buscaFormularioPorIdQuery(Long id);
 
     @Query("select f from Formulario f")
-    public Formulario buscaTodosFormularios();
+    public Formulario buscaTodosFormulariosQuery();
 
     @Query("select f from Formulario f where f.modelo =?1")
     public List<Formulario> buscaFormularioPorModelo(String modelo);

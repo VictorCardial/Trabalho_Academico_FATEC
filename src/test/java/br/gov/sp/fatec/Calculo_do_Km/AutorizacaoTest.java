@@ -37,20 +37,49 @@ class AutorizacaoTest {
 
     /*Testando modificacao*/
 	@Test
-    void testamodificacaoAutorizacao() {
-		Autorizacao aut = autRepo.getById(3l);
+    void testaModificacaoAutorizacao() {
+		Autorizacao aut = autRepo.getById(2l);
 		aut.setNome("ROLE_TESTANDO");
 
 		assertEquals("ROLE_TESTANDO", aut.getNome());
 	}
 
     /*Testando delecao*/
+	// @Test
+    // void testaDeleteAutorizacao() {
+	// 	Autorizacao aut = new Autorizacao();
+	// 	aut.setNome("ROLE_FOUR");
+	// 	autRepo.save(aut);
+
+	// 	autRepo.delete(aut);
+
+	// 	assertNull(aut);
+	// }
 
     /*Testando busca*/
+	@Test
+    void testaBuscaAutorizacaoPorNome () {
+		Autorizacao autorizacao = autRepo.buscaAutorizacaoPorNome("ROLE_USUARIO");
+        assertNotNull(autorizacao);
+	}
 
     /*Testando restricoes*/
+	@Test
+    void testaRestricao () {
+		Autorizacao aut1 = new Autorizacao();
+		aut1.setNome("ROLE_ONE");
+		autRepo.save(aut1);
+		
+		// Autorizacao aut2 = new Autorizacao();
+		// aut1.setNome("ROLE_ONE");
+		// autRepo.save(aut2);
+		
+		assertNotNull(aut1.getId());
+		// assertNull(aut2.getId());           //alterar oara exception
+	}
 
     /*Testando relacionamento (se houver)*/
+	
 
     /*Testando exceptions...*/
 
