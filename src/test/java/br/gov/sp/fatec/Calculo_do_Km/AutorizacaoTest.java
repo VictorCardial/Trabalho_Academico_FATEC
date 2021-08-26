@@ -2,6 +2,8 @@ package br.gov.sp.fatec.Calculo_do_Km;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +11,9 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.sp.fatec.Calculo_do_Km.entity.Autorizacao;
+import br.gov.sp.fatec.Calculo_do_Km.entity.Usuario;
 import br.gov.sp.fatec.Calculo_do_Km.repository.AutorizacaoRepository;
+import br.gov.sp.fatec.Calculo_do_Km.repository.UsuarioRepository;
 
 @SpringBootTest
 @Transactional
@@ -19,68 +23,58 @@ class AutorizacaoTest {
 	@Autowired
     private AutorizacaoRepository autRepo;
 
+	@Autowired
+    private UsuarioRepository userRepo;
+
 	@Test
 	void contextLoads() {
 	}
 
 	/*Testando a classe de autorizacao*/
 
-    /*Testando insercao*/
+	/*save*/
+
 	@Test
-    void testaCriacaoAutorizacao() {
+	void TestaInsercaoAutorizacao()
+	{
 		Autorizacao aut = new Autorizacao();
-		aut.setNome("ROLE_TESTE");
+		aut.setNome("ROLE_TESTER");
 		autRepo.save(aut);
-		
 		assertNotNull(aut.getId());
 	}
 
-    /*Testando modificacao*/
-	@Test
-    void testaModificacaoAutorizacao() {
-		Autorizacao aut = autRepo.getById(2l);
-		aut.setNome("ROLE_TESTANDO");
+	/*delete*/
+	/*update*/
+	/*buscar(id)*/
+	/*restrições (exceptions)*/
+	/*relacionamentos*/
 
-		assertEquals("ROLE_TESTANDO", aut.getNome());
+	/**Relacionamento N:N entre Autorizacao e Usuario */
+	@Test
+	void TesteAutorizacaoNparaNUsuario()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+		Usuario user = new Usuario();
+		user.setNome("NomeUser");
+		user.setSenha("SenhaUser");
+		user.setAutorizacoes(new HashSet<Autorizacao>());
+		user.getAutorizacoes().add(aut);
+		userRepo.save(user);
+
+		assertNotNull(aut.getId());
 	}
 
-    /*Testando delecao*/
-	// @Test
-    // void testaDeleteAutorizacao() {
-	// 	Autorizacao aut = new Autorizacao();
-	// 	aut.setNome("ROLE_FOUR");
-	// 	autRepo.save(aut);
+	/*teste repository*/
 
-	// 	autRepo.delete(aut);
-
-	// 	assertNull(aut);
-	// }
-
-    /*Testando busca*/
 	@Test
-    void testaBuscaAutorizacaoPorNome () {
-		Autorizacao autorizacao = autRepo.buscaAutorizacaoPorNome("ROLE_USUARIO");
-        assertNotNull(autorizacao);
+	void TesteFindByNomeAutorizacao()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+		assertNotNull(autRepo.findByNome("ROLE_TESTER"));
 	}
-
-    /*Testando restricoes*/
-	@Test
-    void testaRestricao () {
-		Autorizacao aut1 = new Autorizacao();
-		aut1.setNome("ROLE_ONE");
-		autRepo.save(aut1);
-		
-		// Autorizacao aut2 = new Autorizacao();
-		// aut1.setNome("ROLE_ONE");
-		// autRepo.save(aut2);
-		
-		assertNotNull(aut1.getId());
-		// assertNull(aut2.getId());           //alterar oara exception
-	}
-
-    /*Testando relacionamento (se houver)*/
-	
-
-    /*Testando exceptions...*/
 
 }

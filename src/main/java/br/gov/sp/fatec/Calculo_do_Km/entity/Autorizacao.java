@@ -28,8 +28,8 @@ public class Autorizacao {
 
     /**Habilito se eu quiser retornar uma lista de Usuarios por Autorizações*/
 
-    /*@ManyToMany(fetch = FetchType.LAZY, mappedBy = "autorizacoes")
-    private Set<Usuario> usuarios;*/
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "autorizacoes")
+    private Set<Usuario> usuarios;
 
     /**Getters e Setters dos atributos */
 
@@ -51,12 +51,12 @@ public class Autorizacao {
 
     /**Habilito se eu quiser Getter e Setter para retornar uma Lista de Usuarios por Autorizacoes */
 
-    /*public Set<Usuario> getUsuarios() {
+    public Set<Usuario> getUsuarios() {
         return this.usuarios;
     }
 
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
-    }*/
+    }
 
 }
