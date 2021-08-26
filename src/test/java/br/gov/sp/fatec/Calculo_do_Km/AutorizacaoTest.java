@@ -46,7 +46,27 @@ class AutorizacaoTest {
 	/*delete*/
 	/*update*/
 	/*buscar(id)*/
+
+	@Test
+	void TesteFindById()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+		assertNotNull(autRepo.findById(aut.getId()));
+	}
+
+	@Test
+	void TesteFindAll()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+		assertFalse(autRepo.findAll().isEmpty());
+	}
 	/*restrições (exceptions)*/
+	/**Nome de autorizacao unique */
+
 	/*relacionamentos*/
 
 	/**Relacionamento N:N entre Autorizacao e Usuario */
@@ -75,6 +95,30 @@ class AutorizacaoTest {
 		aut.setNome("ROLE_TESTER");
 		autRepo.save(aut);
 		assertNotNull(autRepo.findByNome("ROLE_TESTER"));
+		//assertEquals("ROLE_TESTER",autRepo.findByNome(aut.getNome()));
 	}
 
+	/**Teste falhando */
+	/*@Test
+	void TesteQuerybuscaAutorizacaoNome()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+		assertEquals("ROLE_TESTER",autRepo.QuerybuscaAutorizacaoNome(aut.getNome()));
+	}*/
+
+	@Test
+	void TesteQuerybuscaAutorizacaoTodos()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+
+		Autorizacao aut2 = new Autorizacao();
+		aut2.setNome("ROLE_TESTER2");
+		autRepo.save(aut2);
+
+		assertFalse(autRepo.QuerybuscaAutorizacaoTodos().isEmpty());
+	}
 }
