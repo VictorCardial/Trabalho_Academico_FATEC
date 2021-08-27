@@ -3,6 +3,8 @@ package br.gov.sp.fatec.Calculo_do_Km;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.gov.sp.fatec.Calculo_do_Km.entity.Autorizacao;
+import br.gov.sp.fatec.Calculo_do_Km.entity.Formulario;
 import br.gov.sp.fatec.Calculo_do_Km.entity.Usuario;
 import br.gov.sp.fatec.Calculo_do_Km.repository.AutorizacaoRepository;
 import br.gov.sp.fatec.Calculo_do_Km.repository.UsuarioRepository;
@@ -44,7 +47,30 @@ class AutorizacaoTest {
 	}
 
 	/*delete*/
+
+	@Test
+	void TesteAutorizacaoDelete()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+
+		autRepo.deleteById(aut.getId());
+		Optional opt = autRepo.findById(aut.getId());
+		assertEquals(Optional.empty(),opt);
+	}
+
 	/*update*/
+
+	@Test
+	void TesteAutorizacaoUpdate()
+	{
+		Autorizacao aut = autRepo.findByNome("ROLE_ADMIN");
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+		assertEquals("ROLE_TESTER",aut.getNome());
+	}
+
 	/*buscar(id)*/
 
 	@Test
@@ -57,12 +83,14 @@ class AutorizacaoTest {
 	}
 
 	@Test
-	void TesteFindAll()
+	void TesteQuerybuscaAutorizacaoTodosSet()
 	{
 		Autorizacao aut = new Autorizacao();
 		aut.setNome("ROLE_TESTER");
 		autRepo.save(aut);
-		assertFalse(autRepo.findAll().isEmpty());
+
+		Set<Autorizacao> aut2 = autRepo.QuerybuscaAutorizacaoTodos();
+		assertFalse(aut2.isEmpty());
 	}
 	/*restrições (exceptions)*/
 	/**Nome de autorizacao unique */
@@ -76,6 +104,7 @@ class AutorizacaoTest {
 		Autorizacao aut = new Autorizacao();
 		aut.setNome("ROLE_TESTER");
 		autRepo.save(aut);
+
 		Usuario user = new Usuario();
 		user.setNome("NomeUser");
 		user.setSenha("SenhaUser");
@@ -83,7 +112,26 @@ class AutorizacaoTest {
 		user.getAutorizacoes().add(aut);
 		userRepo.save(user);
 
-		assertNotNull(aut.getId());
+		assertNotNull(user.getAutorizacoes().iterator().next().getId());
+	}
+
+
+	@Test
+	void TesteAutorizacaoporUsuarioNome()
+	{
+		Usuario user = new Usuario();
+		user.setNome("NomeUser");
+		user.setSenha("SenhaUser");
+		userRepo.save(user);
+
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		aut.setUsuarios(new HashSet<Usuario>());
+		aut.getUsuarios().add(user);
+		autRepo.save(aut);
+
+		assertNotNull(aut.getUsuarios().iterator().next().getId());
+
 	}
 
 	/*teste repository*/
@@ -94,18 +142,28 @@ class AutorizacaoTest {
 		Autorizacao aut = new Autorizacao();
 		aut.setNome("ROLE_TESTER");
 		autRepo.save(aut);
-		assertNotNull(autRepo.findByNome("ROLE_TESTER"));
-		//assertEquals("ROLE_TESTER",autRepo.findByNome(aut.getNome()));
+
+		Autorizacao aut2 = autRepo.findByNome("ROLE_TESTER");
+		assertEquals("ROLE_TESTER",aut2.getNome());
 	}
 
-	/**Teste falhando */
-	/*@Test
+	@Test
 	void TesteQuerybuscaAutorizacaoNome()
 	{
 		Autorizacao aut = new Autorizacao();
 		aut.setNome("ROLE_TESTER");
 		autRepo.save(aut);
-		assertEquals("ROLE_TESTER",autRepo.QuerybuscaAutorizacaoNome(aut.getNome()));
+
+		Autorizacao aut2 = autRepo.QuerybuscaAutorizacaoNome("ROLE_TESTER");
+		assertEquals("ROLE_TESTER",aut2.getNome());
+		
+	}
+
+	/*@Test
+	void testets()
+	{
+		Autorizacao aut2 = autRepo.QuerybuscaAutorizacaoNome("ROLE_ADMIN");
+		assertEquals("ROLE_ADMIN",aut2.getNome());
 	}*/
 
 	@Test
