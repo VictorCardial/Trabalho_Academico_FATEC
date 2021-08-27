@@ -83,6 +83,28 @@ class AutorizacaoTest {
 	}
 
 	@Test
+	void TesteAutorizacaobuscaId()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+
+		Autorizacao aut2 = autRepo.findById(aut.getId()).get();
+		assertNotNull(aut2);
+	}
+
+	@Test
+	void TesteAutorizacaoNomebuscaId()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+
+		Autorizacao aut2 = autRepo.findById(aut.getId()).get();
+		assertEquals("ROLE_TESTER",aut2.getNome());
+	}
+
+	@Test
 	void TesteQuerybuscaAutorizacaoTodosSet()
 	{
 		Autorizacao aut = new Autorizacao();
@@ -179,4 +201,20 @@ class AutorizacaoTest {
 
 		assertFalse(autRepo.QuerybuscaAutorizacaoTodos().isEmpty());
 	}
+
+	@Test
+	void TesteQuerybuscaSetAutorizacaoTodos()
+	{
+		Autorizacao aut = new Autorizacao();
+		aut.setNome("ROLE_TESTER");
+		autRepo.save(aut);
+
+		Autorizacao aut2 = new Autorizacao();
+		aut2.setNome("ROLE_TESTER2");
+		autRepo.save(aut2);
+
+		Set <Autorizacao> auts = autRepo.QuerybuscaAutorizacaoTodos();
+		assertFalse(auts.isEmpty());
+	}
+
 }
