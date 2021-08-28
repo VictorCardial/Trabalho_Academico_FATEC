@@ -1,4 +1,4 @@
-package br.gov.sp.fatec.Calculo_do_Km.RepositoryTest;
+package br.gov.sp.fatec.Calculo_do_Km.repositoryTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
