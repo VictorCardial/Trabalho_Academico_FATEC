@@ -21,21 +21,34 @@ public class FormularioServiceImpl implements FormularioService {
     @Autowired
     FormularioRepository formRepo;
     
-    // @Override
-    // public Formulario buscarFormularioPorId(Long id){
-    //     return null;
+    @Override
+    public Formulario buscarFormularioPorId(Long id){
+        if(id != null && id > 0) {
+            Formulario formulario = formRepo.querybuscaFormularioPorId(id);
+            return formulario;
+        }
+        return null;
+    }
 
-    // }
-    
+    @Override
+    public List<Formulario> buscarFormularioPorModelo (String modelo) {
+        List<Formulario> formulario = formRepo.querybuscaFormularioPorModelo(modelo);
 
-    // @Override
-    // public List<Formulario> buscarFormularioPorModelo (String modelo){
-    //     List<Formulario> formulario = formRepo.querybuscaFormularioPorModelo(modelo);
+        if(!(formulario.isEmpty())) { // negação de vazio 
+            return formulario;
+        }
+        return null;
+    }
 
-    //     if(formulario!=null) {
-    //         return formulario;
-    //     }
-    // }
+    @Override
+    public List<Formulario> buscaFormularioPorUsuarioNomeEValorSuperior(String nome, BigDecimal valor) {
+        if(nome != "" /*&& valor.compareTo(val)*/) {
+            List<Formulario> formulario = formRepo.queryBuscaFormularioPorUsuarioNomeEValorSuperior(nome, valor);
+            return formulario;
+        }
+        
+        return null;
+    }
 
     @Override
     @Transactional
@@ -58,14 +71,23 @@ public class FormularioServiceImpl implements FormularioService {
         return formulario;
     }
 
-    // @Override
-    // public void deleteFormulario(Long id){
+    @Override
+    public void deleteFormulario(Long id){
+        Formulario formulario = formRepo.querybuscaFormularioPorId(id);
+            if(id != null && id > 0) {
+                formRepo.deleteById(formulario.getId());
+            }
+    }
 
-    // }
-
-    // @Override
-    // public Formulario updateFormulario(Long id, String nome, String senha, String autorizacao){
-    //     return null;
-    // }
-
+    @Override
+    public Formulario updateFormulario (Long id, String modelo, BigDecimal valorCarro) {
+        Formulario formulario = formRepo.querybuscaFormularioPorId(id);
+            if(id != null && id > 0) { 
+                formulario.setModelo(modelo);
+                formulario.setValor_automovel(valorCarro);
+                formRepo.save(formulario);
+                return formulario;
+            }
+        return null;
+    }
 }

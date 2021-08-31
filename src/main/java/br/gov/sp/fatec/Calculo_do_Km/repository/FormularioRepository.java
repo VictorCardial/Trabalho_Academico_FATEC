@@ -23,6 +23,8 @@ public interface FormularioRepository extends JpaRepository<Formulario, Long> {
     public List<Formulario> querybuscaTodosFormularioPorUsuarioNome(String nome);
 
     @Query("select f from Formulario f inner join f.usuario u where u.nome =?1 and f.valor_automovel = ?2")
-    public List<Formulario> querybuscaFormularioPorUsuarioNomeEValor(String nome, BigDecimal modelo);
-    
+    public List<Formulario> querybuscaFormularioPorUsuarioNomeEValor(String nome, BigDecimal valor);
+
+    @Query("select f from Formulario f inner join f.usuario u where u.nome =?1 and f.valor_automovel >= ?2")
+    public List<Formulario> queryBuscaFormularioPorUsuarioNomeEValorSuperior(String nome, BigDecimal valor);    
 }
