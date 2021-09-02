@@ -160,7 +160,7 @@ class AutorizacaoTest {
 	/*teste repository*/
 
 	@Test
-	void TesteFindByNomeAutorizacao()
+	void TesteFindByNome()
 	{
 		Autorizacao aut = new Autorizacao();
 		aut.setNome("ROLE_TESTER");

@@ -1,6 +1,5 @@
 package br.gov.sp.fatec.Calculo_do_Km.repository;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
