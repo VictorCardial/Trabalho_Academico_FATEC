@@ -1,7 +1,9 @@
 package br.gov.sp.fatec.Calculo_do_Km.repository;
 
+import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.springframework.dao.DataIntegrityViolationException;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -155,6 +157,14 @@ class FormularioTests {
 	void testaBuscaFormularioPorUsuarioNomeEValorQuery() {
 		List<Formulario> formulario = formRepo.querybuscaFormularioPorUsuarioNomeEValor("hercules", new BigDecimal("5001"));
 		assertTrue(formulario.isEmpty());
+	}
+
+	@Test
+	void testaFormulario () {
+		Assertions.assertThrows(DataIntegrityViolationException.class, () -> {
+			Formulario form = new Formulario();
+			formRepo.save(form);
+		});
 	}
 
 }

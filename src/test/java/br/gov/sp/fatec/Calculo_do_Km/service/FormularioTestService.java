@@ -1,8 +1,10 @@
 package br.gov.sp.fatec.Calculo_do_Km.service;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +37,7 @@ public class FormularioTestService {
 	}
 
 	@Test
-	void TestaBuscarFormularioPorModelo() {
+	void testaBuscarFormularioPorModelo() {
 		List<Formulario> formulario = formServ.buscarFormularioPorModelo("fusca");
 		assertTrue(formulario.isEmpty());
 	}
@@ -53,13 +55,13 @@ public class FormularioTestService {
 	}	
 
 	@Test
-	void TestaUpdateFormulario() {
+	void testaUpdateFormulario() {
 		Formulario formulario = formServ.updateFormulario(2l, "Hilux", new BigDecimal("150000"));
 		assertEquals("Hilux", formulario.getModelo());
 	}
 
 	@Test
-	void TestaDeleteFormulario() {
+	void testaDeleteFormulario() {
 		Formulario formulario = formServ.criaFormulario ("Leandro", "123", "Fiat Siena", new BigDecimal("20000"));
 		//formulario inserido no DDL
 		formServ.deleteFormulario(formulario.getId());
@@ -67,4 +69,12 @@ public class FormularioTestService {
 		Formulario formDelete = formServ.buscarFormularioPorId(formulario.getId());
 		assertNull(formDelete);
 	}
+
+	@Test
+	void testaFormulario () {
+		Assertions.assertThrows(DataIntegrityViolationException.class, () -> {
+			Formulario form = formServ.criaFormulario("", "", "", new BigDecimal(""));
+		});
+	}
+
 }
