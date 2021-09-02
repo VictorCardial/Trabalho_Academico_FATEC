@@ -1,4 +1,4 @@
-package br.gov.sp.fatec.Calculo_do_Km.repositoryTest;
+package br.gov.sp.fatec.Calculo_do_Km.repository;
 
 import java.util.HashSet;
 

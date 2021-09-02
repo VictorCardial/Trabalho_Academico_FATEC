@@ -42,11 +42,14 @@ public class FormularioServiceImpl implements FormularioService {
 
     @Override
     public List<Formulario> buscaFormularioPorUsuarioNomeEValorSuperior(String nome, BigDecimal valor) {
-        if(nome != "" /*&& valor.compareTo(val)*/) {
-            List<Formulario> formulario = formRepo.queryBuscaFormularioPorUsuarioNomeEValorSuperior(nome, valor);
-            return formulario;
+        Usuario usuario = userRepo.findByNome(nome);
+
+        if(usuario != null) {
+            if (valor.compareTo(new BigDecimal("0")) == 1) {
+                List<Formulario> formulario = formRepo.queryBuscaFormularioPorUsuarioNomeEValorSuperior(nome, valor);
+                return formulario;
+            }
         }
-        
         return null;
     }
 
@@ -82,7 +85,9 @@ public class FormularioServiceImpl implements FormularioService {
     @Override
     public Formulario updateFormulario (Long id, String modelo, BigDecimal valorCarro) {
         Formulario formulario = formRepo.querybuscaFormularioPorId(id);
-            if(id != null && id > 0) { 
+
+            if(formulario != null) { 
+                formulario.setId(id);
                 formulario.setModelo(modelo);
                 formulario.setValor_automovel(valorCarro);
                 formRepo.save(formulario);
