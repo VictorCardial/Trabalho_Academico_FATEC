@@ -26,6 +26,8 @@ class UsuarioTest {
     @Autowired
     private AutorizacaoRepository autRepo;
 
+    /**Falta terminar... (metodos repository e relações) */
+
 	@Test
 	void contextLoads() {
 	}
@@ -82,16 +84,73 @@ class UsuarioTest {
         user.setNome("NomeTest");
         userRepo.save(user);
         assertEquals("123",user.getSenha());
-    }*/
-    //UsuarioTest.TestaUpdateUsuario2:84 expected: <123> but was: <null>
+    }
+    UsuarioTest.TestaUpdateUsuario2:84 expected: <123> but was: <null>
 
-    /**Tentei tirar o Transactional e Rollback, porém, não funcionou e retornou DataIntegrityViolation*/
+    Tentei tirar o Transactional e Rollback, porém, não funcionou e retornou DataIntegrityViolation*/
 
 
     /*buscar(id)*/
 
+    @Test
+    void TesteBuscaUsuario()
+    {
+        Usuario user = new Usuario();
+        user.setNome("NomeTest");
+        user.setSenha("SenhaTest");
+        userRepo.save(user);
+
+        assertNotNull(userRepo.findById(user.getId()));
+    }
+
+    @Test
+    void TesteBuscaUsuario2()
+    {
+        Usuario user = new Usuario();
+        user.setNome("NomeTest");
+        user.setSenha("SenhaTest");
+        userRepo.save(user);
+
+        Usuario user2 = userRepo.findById(user.getId()).get();
+        assertNotNull(user2);
+    }
+
+    @Test
+    void TesteBuscaUsuario3()
+    {
+        Usuario user = new Usuario();
+        user.setNome("NomeTest");
+        user.setSenha("SenhaTest");
+        userRepo.save(user);
+
+        Usuario user2 = userRepo.findById(user.getId()).get();
+        assertEquals("SenhaTest", user2.getSenha());
+    }
 
     /*restrições (exceptions)*/
     /*relacionamentos*/
     /*teste repository*/
+
+    @Test
+    void TestefindByNome()
+    {
+        Usuario user = userRepo.findByNome("victor");
+        assertEquals("123", user.getSenha());
+    }
+
+    @Test
+    void TestefindByNomeContainsIgnoreCase()
+    {
+        Usuario user = userRepo.findByNomeContainsIgnoreCase("HERCULES");
+        assertNotNull(user);
+    }
+
+    @Test
+    void TestebuscaUsuarioPorNome()
+    {
+        Usuario user = userRepo.buscaUsuarioPorNome("admin");
+        assertNotNull(user);
+    }
+
+
 }

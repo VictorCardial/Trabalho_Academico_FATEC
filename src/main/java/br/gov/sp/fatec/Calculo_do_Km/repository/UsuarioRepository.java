@@ -13,7 +13,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
     public Usuario findByNome(String nome);
 
-    public List<Usuario> findByNomeContainsIgnoreCase(String nome);
+    public Usuario findByNomeContainsIgnoreCase(String nome);
 
     @Query("select u from Usuario u where u.nome = ?1")
     public Usuario buscaUsuarioPorNome(String nome);
