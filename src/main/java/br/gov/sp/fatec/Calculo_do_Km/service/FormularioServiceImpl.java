@@ -45,7 +45,7 @@ public class FormularioServiceImpl implements FormularioService {
         Usuario usuario = userRepo.findByNome(nome);
 
         if(usuario != null) {
-            if (valor.compareTo(new BigDecimal("0")) == 1) {
+            if (valor.compareTo(new BigDecimal("0")) == 1 || valor.compareTo(new BigDecimal("0")) == 0) {
                 List<Formulario> formulario = formRepo.queryBuscaFormularioPorUsuarioNomeEValorSuperior(nome, valor);
                 return formulario;
             }
