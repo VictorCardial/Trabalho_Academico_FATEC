@@ -32,10 +32,12 @@ public class FormularioServiceImpl implements FormularioService {
 
     @Override
     public List<Formulario> buscarFormularioPorModelo (String modelo) {
-        List<Formulario> formulario = formRepo.querybuscaFormularioPorModelo(modelo);
-
-        if(!(formulario.isEmpty())) { // negação de vazio 
-            return formulario;
+        if (modelo != "") {
+            List<Formulario> formulario = formRepo.querybuscaFormularioPorModelo(modelo);
+            
+            if(!(formulario.isEmpty())) { // negação de vazio 
+                return formulario;
+            }
         }
         return null;
     }

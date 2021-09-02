@@ -13,12 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 import br.gov.sp.fatec.Calculo_do_Km.entity.Formulario;
-import br.gov.sp.fatec.Calculo_do_Km.repository.FormularioRepository;
-import br.gov.sp.fatec.Calculo_do_Km.repository.UsuarioRepository;
-import br.gov.sp.fatec.Calculo_do_Km.service.FormularioService;
 
 @SpringBootTest
 @Transactional
@@ -26,14 +22,7 @@ import br.gov.sp.fatec.Calculo_do_Km.service.FormularioService;
 public class FormularioTestService {
 
     @Autowired
-	FormularioRepository formRepo;
-
-	@Autowired
-	UsuarioRepository usuarioRepo; 
-
-    @Autowired
     private FormularioService formServ;
-
 
 	@Test
 	void contextLoads() {
@@ -71,10 +60,11 @@ public class FormularioTestService {
 
 	@Test
 	void TestaDeleteFormulario() {
+		Formulario formulario = formServ.criaFormulario ("Leandro", "123", "Fiat Siena", new BigDecimal("20000"));
 		//formulario inserido no DDL
-		formServ.deleteFormulario(2l);
+		formServ.deleteFormulario(formulario.getId());
 		//verificando se o valor foi realmente deletado
-		Optional formDelete = formRepo.findById(2l);
-		assertTrue(formDelete.isEmpty());
+		Formulario formDelete = formServ.buscarFormularioPorId(formulario.getId());
+		assertNull(formDelete);
 	}
 }
