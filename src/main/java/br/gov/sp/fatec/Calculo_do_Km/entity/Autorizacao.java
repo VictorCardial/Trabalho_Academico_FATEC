@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "aut_autorizacao")
 public class Autorizacao {
@@ -29,6 +31,7 @@ public class Autorizacao {
     /**Habilito se eu quiser retornar uma lista de Usuarios por Autorizações*/
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "autorizacoes")
+    @JsonIgnore
     private Set<Usuario> usuarios;
 
     /**Getters e Setters dos atributos */

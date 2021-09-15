@@ -1,6 +1,8 @@
 package br.gov.sp.fatec.Calculo_do_Km.service;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import br.gov.sp.fatec.Calculo_do_Km.entity.Autorizacao;
 import br.gov.sp.fatec.Calculo_do_Km.entity.Usuario;
 import br.gov.sp.fatec.Calculo_do_Km.repository.AutorizacaoRepository;
 import br.gov.sp.fatec.Calculo_do_Km.repository.UsuarioRepository;
+import br.gov.sp.fatec.Calculo_do_Km.exception.RegistroNaoEncontradoException;
 
 @Service
 public class SegurancaServiceImpl implements SegurancaService{
@@ -41,6 +44,39 @@ public class SegurancaServiceImpl implements SegurancaService{
         userRepo.save(user);
 
         return user;
+    }
+    
+    @Override
+    public List<Usuario> buscarTodosUsuarios() {
+      return userRepo.findAll();
+    }
+
+    @Override
+    public Usuario buscarUsuarioPorId(Long id) {
+      Optional<Usuario> usuarioOp = userRepo.findById(id);
+      if(usuarioOp.isPresent()) {
+        return usuarioOp.get();
+      }
+      throw new RegistroNaoEncontradoException("Usuário não encontrado!");
+    }
+
+    @Override
+    public Usuario buscarUsuarioPorNome(String nome) {
+      Usuario usuario = userRepo.findByNome(nome);
+      if(usuario != null) {
+        return usuario;
+      }
+      throw new RegistroNaoEncontradoException("Usuário não encontrado!");
+
+    }
+
+    @Override
+    public Autorizacao buscarAutorizacaoPorNome(String nome) {
+      Autorizacao autorizacao = autRepo.findByNome(nome);
+      if(autorizacao != null) {
+        return autorizacao;
+      }
+      throw new RegistroNaoEncontradoException("Autorização não encontrada!");
     }
     
 }
