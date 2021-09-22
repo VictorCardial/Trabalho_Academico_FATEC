@@ -11,27 +11,29 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.fatec.Calculo_do_Km.controller.View;
 
 @Entity
 @Table(name = "aut_autorizacao")
 public class Autorizacao {
 
     /*Atributos da tabela Autorizacao*/
-
+    @JsonView(View.UsuarioCompleto.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "aut_id")
     private Long id;
 
+    @JsonView({View.UsuarioResumo.class, View.AutorizacaoResumo.class})
     @Column(name = "aut_nome")
     private String nome;
 
 
     /**Habilito se eu quiser retornar uma lista de Usuarios por Autorizações*/
-
+    @JsonView(View.AutorizacaoResumo.class)
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "autorizacoes")
-    @JsonIgnore
     private Set<Usuario> usuarios;
 
     /**Getters e Setters dos atributos */

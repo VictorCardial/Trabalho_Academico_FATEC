@@ -13,20 +13,27 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 import javax.validation.constraints.Digits;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.fatec.Calculo_do_Km.controller.View;
+
 @Entity
 @Table(name = "for_formulario")
 public class Formulario {
 
 /**Atributos da tabela Formulario */
-
+@JsonView(View.UsuarioCompleto.class)
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name = "for_id")
 private Long id;
 
+@JsonView(View.UsuarioResumo.class)
 @Column(name = "for_modelo")
 private String modelo;
 
+@JsonView(View.UsuarioResumo.class)
 @Column(name = "for_valor_automovel")
 @Digits(integer = 6, fraction = 2)
 private BigDecimal valor_automovel;
@@ -191,6 +198,7 @@ private BigDecimal lucro_final_gnv;
 
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "for_usr_id")
+@JsonIgnore
 private Usuario usuario;
 
 /**Getters e Setters dos atributos */

@@ -15,17 +15,22 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.fatec.Calculo_do_Km.controller.View;
+
 @Entity
 @Table(name = "usr_usuario")
 public class Usuario {
 
     /**Atributos da Tabela Usuario */
-
+    @JsonView(View.UsuarioCompleto.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usr_id")
     private Long id;
 
+    @JsonView({View.UsuarioResumo.class, View.AutorizacaoResumo.class})
     @Column(name = "usr_nome")
     private String nome;
 
@@ -34,6 +39,7 @@ public class Usuario {
 
     /**Relacionamento N:N de Usuario com Autorizacao */
 
+    @JsonView(View.UsuarioResumo.class)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "uau_usuario_autorizacao",
         joinColumns = { @JoinColumn(name = "usr_id")},
@@ -43,6 +49,7 @@ public class Usuario {
 
     /**Relacionamento 1:N de Usuario com Formulario */
 
+    @JsonView(View.UsuarioResumo.class)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
     private List<Formulario> formularios;
 
