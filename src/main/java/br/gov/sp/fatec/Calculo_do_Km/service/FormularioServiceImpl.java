@@ -31,6 +31,11 @@ public class FormularioServiceImpl implements FormularioService {
     }
 
     @Override
+    public List<Formulario> buscarTodosFormularios() {
+      return formRepo.findAll();
+    }
+
+    @Override
     public List<Formulario> buscarFormularioPorModelo (String modelo) {
         if (modelo != "") {
             List<Formulario> formulario = formRepo.querybuscaFormularioPorModelo(modelo);

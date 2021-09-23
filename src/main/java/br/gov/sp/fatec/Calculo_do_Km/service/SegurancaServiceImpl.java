@@ -29,8 +29,7 @@ public class SegurancaServiceImpl implements SegurancaService{
 
         Autorizacao aut = autRepo.findByNome(autorizacao);
 
-        if(aut==null)
-        {
+        if(aut==null){
             aut = new Autorizacao();
             aut.setNome(autorizacao);
             autRepo.save(aut);
@@ -67,7 +66,31 @@ public class SegurancaServiceImpl implements SegurancaService{
         return usuario;
       }
       throw new RegistroNaoEncontradoException("Usuário não encontrado!");
+    }
 
+    @Transactional
+    public Usuario updateUsuario(Long id, String nome, String senha, String autorizacao) {
+
+        Autorizacao aut = autRepo.findByNome(autorizacao);
+        if (aut == null) {
+            aut = new Autorizacao();
+            aut.setNome(autorizacao);
+            autRepo.save(aut);
+        }
+
+        return userRepo.findById(id)
+           .map(user -> {
+               user.setNome(nome);
+               user.setSenha(senha);
+               Usuario updated = userRepo.save(user);
+
+               return updated;
+        }).orElse(null);
+
+    }
+
+    public void deleteUsuario(Long id) {
+      userRepo.deleteById(id);       
     }
 
     @Override

@@ -30,7 +30,7 @@ public class Usuario {
     @Column(name = "usr_id")
     private Long id;
 
-    @JsonView({View.UsuarioResumo.class, View.AutorizacaoResumo.class})
+    @JsonView({View.UsuarioResumo.class, View.AutorizacaoResumo.class, View.FormularioResumo.class})
     @Column(name = "usr_nome")
     private String nome;
 

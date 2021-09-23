@@ -15,6 +15,10 @@ public interface SegurancaService {
 
     public Usuario buscarUsuarioPorNome(String nome);
 
+    public void deleteUsuario(Long id);
+
+    public Usuario updateUsuario(Long id, String nome, String senha, String autorizacao);
+
     public Autorizacao buscarAutorizacaoPorNome(String nome);
 
 }

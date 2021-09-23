@@ -8,6 +8,8 @@ import br.gov.sp.fatec.Calculo_do_Km.entity.Formulario;
 
 public interface FormularioService {
 
+    public List<Formulario> buscarTodosFormularios();
+
     public Formulario buscarFormularioPorId(Long id);
 
     public List<Formulario> buscarFormularioPorModelo(String modelo);

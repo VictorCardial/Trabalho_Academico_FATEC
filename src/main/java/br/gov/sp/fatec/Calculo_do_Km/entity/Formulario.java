@@ -23,21 +23,22 @@ import br.gov.sp.fatec.Calculo_do_Km.controller.View;
 public class Formulario {
 
 /**Atributos da tabela Formulario */
-@JsonView(View.UsuarioCompleto.class)
+@JsonView({View.UsuarioCompleto.class, View.FormularioCompleto.class})
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name = "for_id")
 private Long id;
 
-@JsonView(View.UsuarioResumo.class)
+@JsonView({View.UsuarioResumo.class, View.FormularioResumo.class})
 @Column(name = "for_modelo")
 private String modelo;
 
-@JsonView(View.UsuarioResumo.class)
+@JsonView({View.UsuarioResumo.class, View.FormularioResumo.class})
 @Column(name = "for_valor_automovel")
 @Digits(integer = 6, fraction = 2)
 private BigDecimal valor_automovel;
 
+@JsonView(View.FormularioResumo.class)
 @Column(name = "for_depreciacao")
 @Digits(integer = 6, fraction = 2)
 private BigDecimal depreciacao;
@@ -195,7 +196,7 @@ private BigDecimal lucro_final_etanol;
 private BigDecimal lucro_final_gnv;
 
 /**Relacionamento N:1 de Formulario com Usuario */
-
+@JsonView(View.FormularioResumo.class)
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "for_usr_id")
 @JsonIgnore
