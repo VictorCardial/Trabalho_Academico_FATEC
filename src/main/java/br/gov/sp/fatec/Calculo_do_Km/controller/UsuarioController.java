@@ -70,16 +70,16 @@ public class UsuarioController {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
-    }
+  }
 
-    @PutMapping(value="/altera/{id}")
-    public Usuario update(@PathVariable("id") long id,@RequestBody Usuario user) {
-        try{
-            return segurancaService.updateUsuario(id, user.getNome(), user.getSenha(), "ROLE_USUARIO");
-        }catch (Exception e){
-            return null;
-        }
-    }
+  @PutMapping(value="/altera/{id}")
+  public Usuario update(@PathVariable("id") long id,@RequestBody Usuario user) {
+      try{
+          return segurancaService.updateUsuario(id, user.getNome(), user.getSenha(), "ROLE_USUARIO");
+      }catch (Exception e){
+          return null;
+      }
+  }
 
   @JsonView(View.AutorizacaoResumo.class)
   @GetMapping(value = "/autorizacao/{autorizacao}")

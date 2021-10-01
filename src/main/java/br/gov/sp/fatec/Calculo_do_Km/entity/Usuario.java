@@ -34,6 +34,7 @@ public class Usuario {
     @Column(name = "usr_nome")
     private String nome;
 
+    @JsonView(View.UsuarioCompleto.class)
     @Column(name = "usr_senha")
     private String senha;
 

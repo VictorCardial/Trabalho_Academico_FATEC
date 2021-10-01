@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 import javax.validation.constraints.Digits;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import br.gov.sp.fatec.Calculo_do_Km.controller.View;
@@ -199,7 +198,6 @@ private BigDecimal lucro_final_gnv;
 @JsonView(View.FormularioResumo.class)
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "for_usr_id")
-@JsonIgnore
 private Usuario usuario;
 
 /**Getters e Setters dos atributos */

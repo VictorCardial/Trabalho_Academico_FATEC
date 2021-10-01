@@ -83,6 +83,7 @@ public class FormularioController {
     public Formulario update(@PathVariable("id") long id,@RequestBody Formulario formulario) {
         try{
             return formService.updateFormulario(id, formulario.getModelo(), formulario.getValorAutomovel());
+
         }catch (Exception e){
             return null;
         }
