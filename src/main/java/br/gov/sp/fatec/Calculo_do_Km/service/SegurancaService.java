@@ -2,10 +2,12 @@ package br.gov.sp.fatec.Calculo_do_Km.service;
 
 import java.util.List;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import br.gov.sp.fatec.Calculo_do_Km.entity.Autorizacao;
 import br.gov.sp.fatec.Calculo_do_Km.entity.Usuario;
 
-public interface SegurancaService {
+public interface SegurancaService extends UserDetailsService {
     
     public Usuario cadastroUsuario(String nome, String senha, String autorizacao);
 
