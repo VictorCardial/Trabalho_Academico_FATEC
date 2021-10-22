@@ -26,7 +26,7 @@ public class LoginController {
   @PostMapping()
   public Login autenticar(@RequestBody Login login) throws JsonProcessingException {
     Authentication auth = new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword()); /* Como Authentication é um interface, houve necessidade de instanciar o objeto pelo Spring Security */
-    auth = authManager.authenticate(auth);
+    auth = authManager.authenticate(auth); /* Deopis de autenticato, as autorizacoes ja estara no contexto devido a uma busca no db */
     login.setPassword(null);
     login.setToken(JwtUtils.generateToken(auth));
     return login;

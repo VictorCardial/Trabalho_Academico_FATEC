@@ -18,7 +18,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class JwtUtils {
 
-  private static final String KEY = "spring.jwt.sec";
+  private static final String KEY = "spring.jwt.sec"; /* chave de validacao do token*/
 
   public static String generateToken(Authentication usuario) throws JsonProcessingException {
     ObjectMapper mapper = new ObjectMapper();
@@ -27,7 +27,7 @@ public class JwtUtils {
     if (!usuario.getAuthorities().isEmpty()) {
       usuarioSemSenha.setAutorizacao(usuario.getAuthorities().iterator().next().getAuthority());
     }
-    String usuarioJson = mapper.writeValueAsString(usuarioSemSenha);
+    String usuarioJson = mapper.writeValueAsString(usuarioSemSenha); //gerar json
     Date agora = new Date();
     Long hora = 1000L * 60L * 60L; // Uma hora
     return Jwts.builder().claim("userDetails", usuarioJson).setIssuer("br.gov.sp.fatec").setSubject(usuario.getName())
@@ -41,7 +41,7 @@ public class JwtUtils {
     Login usuario = mapper.readValue(credentialsJson, Login.class);
     UserDetails userDetails = User.builder().username(usuario.getUsername()).password("secret")
         .authorities(usuario.getAutorizacao()).build();
-    return new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword(),
+    return new UsernamePasswordAuthenticationToken(usuario.getUsername(), usuario.getPassword(), /* retorna um authentication*/
         userDetails.getAuthorities());
   }
 

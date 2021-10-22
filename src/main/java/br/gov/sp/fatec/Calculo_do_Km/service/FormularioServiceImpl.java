@@ -1,6 +1,7 @@
 package br.gov.sp.fatec.Calculo_do_Km.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ public class FormularioServiceImpl implements FormularioService {
     FormularioRepository formRepo;
     
     @Override
+    @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")
     public Formulario buscarFormularioPorId(Long id){
         if(id != null && id > 0) {
             Formulario formulario = formRepo.querybuscaFormularioPorId(id);
@@ -31,11 +33,13 @@ public class FormularioServiceImpl implements FormularioService {
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Formulario> buscarTodosFormularios() {
       return formRepo.findAll();
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public List<Formulario> buscarFormularioPorModelo (String modelo) {
         if (modelo != "") {
             List<Formulario> formulario = formRepo.querybuscaFormularioPorModelo(modelo);
@@ -48,6 +52,7 @@ public class FormularioServiceImpl implements FormularioService {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public List<Formulario> buscaFormularioPorUsuarioNomeEValorSuperior(String nome, BigDecimal valor) {
         Usuario usuario = userRepo.findByNome(nome);
 
@@ -82,6 +87,7 @@ public class FormularioServiceImpl implements FormularioService {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public void deleteFormulario(Long id){
         Formulario formulario = formRepo.querybuscaFormularioPorId(id);
             if(id != null && id > 0) {
@@ -90,6 +96,7 @@ public class FormularioServiceImpl implements FormularioService {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public Formulario updateFormulario (Long id, String modelo, BigDecimal valorCarro) {
         Formulario formulario = formRepo.querybuscaFormularioPorId(id);
 

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import br.gov.sp.fatec.Calculo_do_Km.entity.Autorizacao;
 import br.gov.sp.fatec.Calculo_do_Km.entity.Usuario;
 
-public interface SegurancaService extends UserDetailsService {
+public interface SegurancaService extends UserDetailsService { /* interface que o spring usa para buscar os dados do usuario durante o login */
     
     public Usuario cadastroUsuario(String nome, String senha, String autorizacao);
 
